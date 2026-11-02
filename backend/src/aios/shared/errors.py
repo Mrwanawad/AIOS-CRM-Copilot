@@ -23,3 +23,9 @@ class NotFoundError(AIOSError):
     """A referenced entity does not exist."""
 
     code = "not_found"
+
+
+class ExternalServiceError(AIOSError):
+    """A third-party dependency (LLM, embeddings, CRM) failed after retries."""
+
+    code = "external_service_error"

@@ -12,10 +12,14 @@ from aios.modules.pricing.adapters.settings_discount_limits import SettingsDisco
 from aios.modules.pricing.api.router import build_router as build_pricing_router
 from aios.modules.pricing.application.service import PricingService
 from aios.shared.config import get_settings
-from aios.shared.errors import AIOSError, InvalidInputError, NotFoundError
+from aios.shared.errors import AIOSError, ExternalServiceError, InvalidInputError, NotFoundError
 from aios.shared.logs import configure_logging
 
-_STATUS_BY_ERROR: dict[type[AIOSError], int] = {InvalidInputError: 422, NotFoundError: 404}
+_STATUS_BY_ERROR: dict[type[AIOSError], int] = {
+    InvalidInputError: 422,
+    NotFoundError: 404,
+    ExternalServiceError: 502,
+}
 
 
 @lru_cache(maxsize=1)

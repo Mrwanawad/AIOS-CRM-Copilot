@@ -5,7 +5,7 @@ An internal AI service for real estate sales teams:
 - **Team-lead twin:** grounded answers on projects, units, prices and policies, with citations.
 - **CRM Copilot:** a client context card shown before every call, plus handover summaries when a lead is reassigned.
 
-Full design: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Code organization: [`docs/adr/0001-modular-monolith-hexagonal.md`](docs/adr/0001-modular-monolith-hexagonal.md).
+Full design: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Decisions: [`docs/adr/`](docs/adr/).
 
 ## Layout
 
@@ -25,7 +25,8 @@ infra/             deployment config
 | Module | State |
 |---|---|
 | pricing (installments, mortgage, discount policy) | done |
-| knowledge (ingestion + hybrid RAG) | next |
+| knowledge: Gemini embedder adapter | done |
+| knowledge: ingestion + hybrid retrieval | next |
 | inventory, orchestration, crm_copilot, interactions, coaching, escalation, call_timing | planned |
 
 ## Run locally

@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     anthropic_api_key: SecretStr | None = None
     llm_model: str = "claude-opus-5-5"
 
+    # Embeddings (Google Gemini API). 1536 dims: Matryoshka-truncated, and under
+    # pgvector's 2000-dim HNSW limit for the ``vector`` type.
+    gemini_api_key: SecretStr | None = None
+    embedding_model: str = "gemini-embedding-001"
+    embedding_dim: int = 1536
+    embedding_batch_size: int = 100
+
     # Maximum discount (percent of list price) each role may grant without escalation.
     discount_limits_pct: dict[str, Decimal] = Field(
         default_factory=lambda: {
