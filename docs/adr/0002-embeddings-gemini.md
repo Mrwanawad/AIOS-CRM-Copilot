@@ -44,9 +44,12 @@ Anthropic (no embedding API), Grok, Ollama (local, ruled out).
 - No GPU and no model weights in the image. Cost is per token.
 - Retrieval depends on Google's availability. Transient 429/5xx errors are retried
   with exponential backoff, and repeated failures surface as `ExternalServiceError` (502).
-- Arabic quality is **not yet measured**. The retrieval eval (recall@k, MRR on the
-  Arabic/English gold set) gates this choice, and the decision is revisited if it
-  underperforms.
-- Not yet verified (official docs were unreachable from the build environment):
-  current per-token price, max input tokens and batch-size limit. The batch size
-  is configurable (`AIOS_EMBEDDING_BATCH_SIZE`, default 100).
+- First real measurement (2026-11-02, gold set, n = 28, k = 8): recall@8 = 1.00
+  (EN 1.00, AR 1.00), MRR = 0.875, against 0.85 for the offline lexical embedder.
+  The gold set is templated and too easy, so this only shows the integration works.
+  A paraphrased, section-labelled set is still needed before the choice is final.
+- Max input tokens: **2048**, read from the live `models/gemini-embedding-001`
+  metadata. Chunks are capped at 1200 characters, so they fit with a wide margin.
+- Batch size 100 worked against the live API. Still unverified (official docs are
+  blocked from the build environment): the per-token price and the documented batch
+  limit. The batch size stays configurable (`AIOS_EMBEDDING_BATCH_SIZE`).

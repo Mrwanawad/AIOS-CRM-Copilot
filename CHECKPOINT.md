@@ -4,8 +4,7 @@ Handover file for the next working session. Read this first, then `docs/ARCHITEC
 and `docs/adr/`. Update this file at the end of every session.
 
 - **Last updated:** 2026-11-02
-- **Last commit:** `5dcb20a` "Add knowledge ingestion and hybrid retrieval". CI and Commit
-  guard both green.
+- **Last commit:** see `git log`. Gemini embeddings verified live this session.
 - **Repo:** https://github.com/Mrwanawad/AIOS-CRM-Copilot (public), branch `main`
 
 ---
@@ -83,15 +82,14 @@ numbers are inflated; see the gaps below.
 
 ## 4. Not done / known gaps
 
-1. **No real Gemini call yet.** The key was added to the cloud environment as
-   `AIOS_GEMINI_API_KEY`; confirm it's visible in the new session. Network access to
-   `generativelanguage.googleapis.com` was reachable.
-2. **Gemini details not verified against official docs** (`ai.google.dev` was blocked):
-   embedding price, max input tokens, batch limit (we use 100, configurable).
+1. **Gemini verified live (2026-11-02).** `AIOS_GEMINI_API_KEY` is set in the cloud
+   environment. Full ingest with Gemini worked. Eval: recall@8 = 1.00, MRR = 0.875
+   (offline baseline 0.85). "المقدم كام في لازولي باي؟" now ranks the payment-plan
+   section first (dense rank 1).
+2. **Gemini details:** max input tokens = 2048 (live model metadata). Price and the
+   documented batch limit are still unverified because `ai.google.dev` is blocked.
 3. **The eval is too easy.** The gold questions are templated from the same source as the
-   docs, and the scoring is document-level only. Inside the right document, the chunk
-   ranking is weak: "المقدم كام في لازولي باي؟" ranks the overview above the
-   payment-plan section.
+   docs, and the scoring is document-level only.
 4. **No reranker yet.** ARCHITECTURE.md says cross-encoder (bge-reranker). We still need
    a hosted reranker choice, made the same way as the embeddings: check the user's repos
    first. Cohere Rerank is *mentioned* in the Electro-Pi README but was never
@@ -108,22 +106,20 @@ numbers are inflated; see the gaps below.
 
 ## 5. Next steps (in order)
 
-1. **Session setup** (section 6). Confirm the Gemini key, re-ingest with Gemini, and run
-   `aios eval-retrieval` to compare against the offline baseline.
-2. **Reranker** behind a `Reranker` port, plus a **hand-written paraphrased eval set**
+1. **Reranker** behind a `Reranker` port, plus a **hand-written paraphrased eval set**
    with section-level labels (EN + Egyptian Arabic + Franco-Arabic).
-3. **Inventory module:** load `units.csv` into Postgres (migration 0002) and add typed
+2. **Inventory module:** load `units.csv` into Postgres (migration 0002) and add typed
    search tools (compound, type, bedrooms, budget, status, view).
-4. **Auth:** JWT + RBAC. Then expose the discount check.
-5. **Orchestration:** LangGraph router (knowledge / inventory / calculator / escalate), an
+3. **Auth:** JWT + RBAC. Then expose the discount check.
+4. **Orchestration:** LangGraph router (knowledge / inventory / calculator / escalate), an
    answer composer with citations, and a `/chat` endpoint. Claude is the LLM (Anthropic
    SDK; use the claude-api skill for the current model ids and params).
-6. Then P2 (CRM Copilot) and P3 per the phase table above.
+5. Then P2 (CRM Copilot) and P3 per the phase table above.
 
 ## 6. Session setup (fresh cloud container)
 
 ```bash
-cd /home/user/aios-crm-copilot   # or wherever the repo is cloned
+cd /home/user/AIOS-CRM-Copilot   # or wherever the repo is cloned
 git config user.name Mrwanawad && git config user.email mrwaanawad@gmail.com
 
 # Local Postgres 16 + pgvector (Docker is not available in the cloud container)
