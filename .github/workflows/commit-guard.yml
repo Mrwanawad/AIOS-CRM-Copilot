@@ -1,0 +1,52 @@
+name: Commit guard
+
+# Fails when a pushed commit is not authored and committed by the repo owner,
+# or carries AI attribution trailers.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  authorship:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check authors and trailers
+        env:
+          EXPECTED_NAME: Mrwanawad
+          EXPECTED_EMAIL: mrwaanawad@gmail.com
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "pull_request" ]; then
+            range="$PR_BASE..$PR_HEAD"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            range="HEAD"            # new branch: check its full history
+          else
+            range="$BEFORE..$GITHUB_SHA"
+          fi
+
+          fail=0
+          for sha in $(git rev-list --no-merges "$range"); do
+            ident=$(git log -1 --format='%an|%ae|%cn|%ce' "$sha")
+            IFS='|' read -r an ae cn ce <<< "$ident"
+            if [ "$an" != "$EXPECTED_NAME" ] || [ "$ae" != "$EXPECTED_EMAIL" ]; then
+              echo "::error::$sha authored by '$an <$ae>'"; fail=1
+            fi
+            # GitHub's web UI commits use noreply@github.com as committer.
+            if [ "$ce" != "$EXPECTED_EMAIL" ] && [ "$ce" != "noreply@github.com" ]; then
+              echo "::error::$sha committed by '$cn <$ce>'"; fail=1
+            fi
+            if git log -1 --format=%B "$sha" | grep -qiE '^(co-authored-by:.*(claude|anthropic)|claude-session:)|generated with \[?claude'; then
+              echo "::error::$sha contains AI attribution lines"; fail=1
+            fi
+          done
+          [ "$fail" -eq 0 ] && echo "All commits in $range pass."
+          exit "$fail"
