@@ -28,8 +28,9 @@ infra/             deployment config
 | knowledge: Gemini embedder adapter | done |
 | synthetic corpus + gold Q&A set | done |
 | knowledge: ingestion (manifest, versioning) + hybrid retrieval (pgvector + FTS, RRF) | done |
-| knowledge: reranker + paraphrased eval set | next |
-| inventory, orchestration, crm_copilot, interactions, coaching, escalation, call_timing | planned |
+| knowledge: Cohere reranker (optional) + paraphrased section-level eval set | done, reranker not yet measured live |
+| inventory module | next |
+| orchestration, crm_copilot, interactions, coaching, escalation, call_timing | planned |
 
 ## Run locally
 
@@ -41,6 +42,7 @@ uv run alembic upgrade head
 uv run aios ingest ../data/synthetic/manifest.json
 uv run aios search "المقدم كام في لازولي باي؟"
 uv run aios eval-retrieval ../data/synthetic/eval/gold_qa.jsonl
+uv run aios eval-retrieval ../evals/retrieval_paraphrased.jsonl   # section-level, harder
 uv run uvicorn aios.entrypoints.api:app --reload
 ```
 

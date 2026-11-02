@@ -76,7 +76,7 @@ The user said "start working" instead of answering each one.
 | Guards | Commit guard workflow, CI with a pgvector service | `.github/workflows/` |
 | Docs | ADR 0001 architecture, 0002 Gemini embeddings, 0003 ingestion + retrieval | `docs/adr/` |
 
-**Tests:** 68 passing (62 unit + 6 Postgres integration). ruff and mypy are clean.
+**Tests:** 85 passing (78 unit + 7 Postgres integration). ruff and mypy are clean.
 **Offline retrieval eval** (lexical embedder): recall@8 = 1.00, MRR = 0.85, n = 28. These
 numbers are inflated; see the gaps below.
 
@@ -88,12 +88,15 @@ numbers are inflated; see the gaps below.
    section first (dense rank 1).
 2. **Gemini details:** max input tokens = 2048 (live model metadata). Price and the
    documented batch limit are still unverified because `ai.google.dev` is blocked.
-3. **The eval is too easy.** The gold questions are templated from the same source as the
-   docs, and the scoring is document-level only.
-4. **No reranker yet.** ARCHITECTURE.md says cross-encoder (bge-reranker). We still need
-   a hosted reranker choice, made the same way as the embeddings: check the user's repos
-   first. Cohere Rerank is *mentioned* in the Electro-Pi README but was never
-   implemented.
+3. **Paraphrased eval added** (`evals/retrieval_paraphrased.jsonl`, 46 items, EN / AR /
+   Franco-Arabic, section labels). Live Gemini, fused, k = 8: document recall 0.978,
+   MRR 0.823; **section** recall 0.957, MRR 0.646. At k = 3 section recall is 0.80.
+   Misses: p030 (Sidra price range, Arabic), p039 (resale, Arabic).
+4. **Reranker built, not measured live (ADR 0004).** `CohereReranker` (rerank-v3.5)
+   behind a `Reranker` port; off when `AIOS_COHERE_API_KEY` is unset. Blocked here: no
+   Cohere key in the environment, and the network policy refuses `api.cohere.com`.
+   The user must add the key and allow the host, then run
+   `aios eval-retrieval ../evals/retrieval_paraphrased.jsonl --compare-rerank`.
 5. **Discount check is not exposed in the API.** It needs auth first: the role must come
    from the JWT, never from the request body.
 6. **Synthetic `.xlsx` files change bytes on every regeneration** because openpyxl stamps
@@ -106,8 +109,7 @@ numbers are inflated; see the gaps below.
 
 ## 5. Next steps (in order)
 
-1. **Reranker** behind a `Reranker` port, plus a **hand-written paraphrased eval set**
-   with section-level labels (EN + Egyptian Arabic + Franco-Arabic).
+1. **Measure the reranker** once the Cohere key and host are available (gap 4).
 2. **Inventory module:** load `units.csv` into Postgres (migration 0002) and add typed
    search tools (compound, type, bedrooms, budget, status, view).
 3. **Auth:** JWT + RBAC. Then expose the discount check.

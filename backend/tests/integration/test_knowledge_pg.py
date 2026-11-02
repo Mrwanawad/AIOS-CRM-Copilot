@@ -131,3 +131,23 @@ async def test_retrieval_quality_floor_on_gold_set(clean_db: AsyncEngine, corpus
     assert report.total >= 25
     assert report.recall_at_k >= 0.85
     assert report.language_recall("ar") >= 0.75
+
+
+async def test_paraphrased_labels_point_at_indexed_sections(
+    clean_db: AsyncEngine, corpus: Path
+) -> None:
+    """Fails if a doc heading is renamed and the hand-written labels go stale."""
+    ingest, _ = services(clean_db)
+    await ingest.ingest_manifest(corpus / "manifest.json")
+    async with clean_db.connect() as conn:
+        rows = await conn.execute(
+            text(
+                "SELECT DISTINCT d.source_id, c.heading_path[array_upper(c.heading_path, 1)] "
+                "FROM kb_chunks c JOIN kb_documents d ON d.id = c.document_id "
+                "WHERE d.status = 'active'"
+            )
+        )
+        indexed = {(r[0], r[1]) for r in rows}
+    gold_path = Path(__file__).resolve().parents[3] / "evals" / "retrieval_paraphrased.jsonl"
+    labels = {s for g in load_retrieval_gold(gold_path) for s in g.expected_sections}
+    assert labels - indexed == set()

@@ -44,6 +44,12 @@ class Settings(BaseSettings):
     embedding_dim: int = 1536
     embedding_batch_size: int = 100
 
+    # Reranking (Cohere Rerank). Off when no key is set: retrieval keeps the RRF order.
+    cohere_api_key: SecretStr | None = None
+    rerank_model: str = "rerank-v3.5"
+    rerank_candidates: int = 30
+    rerank_timeout_s: float = 10.0
+
     # Maximum discount (percent of list price) each role may grant without escalation.
     discount_limits_pct: dict[str, Decimal] = Field(
         default_factory=lambda: {
