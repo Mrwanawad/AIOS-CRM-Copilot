@@ -697,6 +697,64 @@ def gold_items(units: list[Unit], rng: random.Random) -> list[GoldItem]:
     return items
 
 
+# --------------------------------------------------------------------------- manifest
+
+DOCS_EFFECTIVE = date(2026, 10, 1)
+
+
+def manifest_entries() -> list[dict[str, object]]:
+    """Ingestion manifest: explicit metadata per file (paths relative to the corpus root)."""
+    entries: list[dict[str, object]] = []
+    company_docs = (
+        ("policies", "policy", "Sales Policies"),
+        ("faq", "faq", "FAQ"),
+        ("playbook", "playbook", "Team Lead Playbook"),
+    )
+    for name, doc_type, title in company_docs:
+        entries.append(
+            {
+                "path": f"docs/{name}.md",
+                "source_id": f"doc:{name}",
+                "series": f"{doc_type}:company",
+                "title": title,
+                "doc_type": doc_type,
+                "version": "v1",
+                "effective_date": DOCS_EFFECTIVE.isoformat(),
+                "status": "active",
+                "compound_code": None,
+            }
+        )
+    for c in COMPOUNDS:
+        entries.append(
+            {
+                "path": f"docs/brochure_{c.code}.md",
+                "source_id": f"doc:brochure_{c.code}",
+                "series": f"brochure:{c.code}",
+                "title": f"{c.name_en} brochure",
+                "doc_type": "brochure",
+                "version": "v1",
+                "effective_date": DOCS_EFFECTIVE.isoformat(),
+                "status": "active",
+                "compound_code": c.code,
+            }
+        )
+        for version, effective, _, state in PRICE_SHEETS:
+            entries.append(
+                {
+                    "path": f"price_sheets/{c.code}_price_sheet_{version}_{effective.isoformat()}.xlsx",
+                    "source_id": f"doc:{c.code}_price_sheet_{version}",
+                    "series": f"price_sheet:{c.code}",
+                    "title": f"{c.name_en} price list {version}",
+                    "doc_type": "price_sheet",
+                    "version": version,
+                    "effective_date": effective.isoformat(),
+                    "status": state,
+                    "compound_code": c.code,
+                }
+            )
+    return entries
+
+
 # --------------------------------------------------------------------------- main
 
 
@@ -728,6 +786,10 @@ def generate(out: Path, seed: int = 42) -> dict[str, int]:
     }
     (out / "catalog.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+    (out / "manifest.json").write_text(
+        json.dumps(manifest_entries(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
     gold = gold_items(units, rng)

@@ -1,0 +1,167 @@
+[
+  {
+    "path": "docs/policies.md",
+    "source_id": "doc:policies",
+    "series": "policy:company",
+    "title": "Sales Policies",
+    "doc_type": "policy",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": null
+  },
+  {
+    "path": "docs/faq.md",
+    "source_id": "doc:faq",
+    "series": "faq:company",
+    "title": "FAQ",
+    "doc_type": "faq",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": null
+  },
+  {
+    "path": "docs/playbook.md",
+    "source_id": "doc:playbook",
+    "series": "playbook:company",
+    "title": "Team Lead Playbook",
+    "doc_type": "playbook",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": null
+  },
+  {
+    "path": "docs/brochure_QMH.md",
+    "source_id": "doc:brochure_QMH",
+    "series": "brochure:QMH",
+    "title": "Qamar Heights brochure",
+    "doc_type": "brochure",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "QMH"
+  },
+  {
+    "path": "price_sheets/QMH_price_sheet_v1_2026-06-01.xlsx",
+    "source_id": "doc:QMH_price_sheet_v1",
+    "series": "price_sheet:QMH",
+    "title": "Qamar Heights price list v1",
+    "doc_type": "price_sheet",
+    "version": "v1",
+    "effective_date": "2026-06-01",
+    "status": "retired",
+    "compound_code": "QMH"
+  },
+  {
+    "path": "price_sheets/QMH_price_sheet_v2_2026-10-01.xlsx",
+    "source_id": "doc:QMH_price_sheet_v2",
+    "series": "price_sheet:QMH",
+    "title": "Qamar Heights price list v2",
+    "doc_type": "price_sheet",
+    "version": "v2",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "QMH"
+  },
+  {
+    "path": "docs/brochure_LZB.md",
+    "source_id": "doc:brochure_LZB",
+    "series": "brochure:LZB",
+    "title": "Lazuli Bay brochure",
+    "doc_type": "brochure",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "LZB"
+  },
+  {
+    "path": "price_sheets/LZB_price_sheet_v1_2026-06-01.xlsx",
+    "source_id": "doc:LZB_price_sheet_v1",
+    "series": "price_sheet:LZB",
+    "title": "Lazuli Bay price list v1",
+    "doc_type": "price_sheet",
+    "version": "v1",
+    "effective_date": "2026-06-01",
+    "status": "retired",
+    "compound_code": "LZB"
+  },
+  {
+    "path": "price_sheets/LZB_price_sheet_v2_2026-10-01.xlsx",
+    "source_id": "doc:LZB_price_sheet_v2",
+    "series": "price_sheet:LZB",
+    "title": "Lazuli Bay price list v2",
+    "doc_type": "price_sheet",
+    "version": "v2",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "LZB"
+  },
+  {
+    "path": "docs/brochure_SDG.md",
+    "source_id": "doc:brochure_SDG",
+    "series": "brochure:SDG",
+    "title": "Sidra Groves brochure",
+    "doc_type": "brochure",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "SDG"
+  },
+  {
+    "path": "price_sheets/SDG_price_sheet_v1_2026-06-01.xlsx",
+    "source_id": "doc:SDG_price_sheet_v1",
+    "series": "price_sheet:SDG",
+    "title": "Sidra Groves price list v1",
+    "doc_type": "price_sheet",
+    "version": "v1",
+    "effective_date": "2026-06-01",
+    "status": "retired",
+    "compound_code": "SDG"
+  },
+  {
+    "path": "price_sheets/SDG_price_sheet_v2_2026-10-01.xlsx",
+    "source_id": "doc:SDG_price_sheet_v2",
+    "series": "price_sheet:SDG",
+    "title": "Sidra Groves price list v2",
+    "doc_type": "price_sheet",
+    "version": "v2",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "SDG"
+  },
+  {
+    "path": "docs/brochure_LTC.md",
+    "source_id": "doc:brochure_LTC",
+    "series": "brochure:LTC",
+    "title": "Lotus Capital Residence brochure",
+    "doc_type": "brochure",
+    "version": "v1",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "LTC"
+  },
+  {
+    "path": "price_sheets/LTC_price_sheet_v1_2026-06-01.xlsx",
+    "source_id": "doc:LTC_price_sheet_v1",
+    "series": "price_sheet:LTC",
+    "title": "Lotus Capital Residence price list v1",
+    "doc_type": "price_sheet",
+    "version": "v1",
+    "effective_date": "2026-06-01",
+    "status": "retired",
+    "compound_code": "LTC"
+  },
+  {
+    "path": "price_sheets/LTC_price_sheet_v2_2026-10-01.xlsx",
+    "source_id": "doc:LTC_price_sheet_v2",
+    "series": "price_sheet:LTC",
+    "title": "Lotus Capital Residence price list v2",
+    "doc_type": "price_sheet",
+    "version": "v2",
+    "effective_date": "2026-10-01",
+    "status": "active",
+    "compound_code": "LTC"
+  }
+]
