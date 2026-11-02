@@ -1,0 +1,346 @@
+{
+  "banner": "SYNTHETIC DEMO DATA. All developers, compounds, prices and policies are fictional.",
+  "seed": 42,
+  "developers": [
+    {
+      "code": "NCD",
+      "name_en": "Nile Crest Developments",
+      "name_ar": "نايل كرست للتطوير",
+      "founded": 2009,
+      "delivered_projects": 7
+    },
+    {
+      "code": "SHR",
+      "name_en": "Sahel Horizon Real Estate",
+      "name_ar": "ساحل هورايزن العقارية",
+      "founded": 2014,
+      "delivered_projects": 4
+    },
+    {
+      "code": "DSP",
+      "name_en": "Delta Stone Properties",
+      "name_ar": "دلتا ستون العقارية",
+      "founded": 2003,
+      "delivered_projects": 11
+    }
+  ],
+  "compounds": [
+    {
+      "code": "QMH",
+      "name_en": "Qamar Heights",
+      "name_ar": "قمر هايتس",
+      "developer": "NCD",
+      "area_en": "New Cairo",
+      "area_ar": "القاهرة الجديدة",
+      "land_acres": 62,
+      "delivery": "2029-06-30",
+      "finishing": "semi_finished",
+      "maintenance_pct": 8,
+      "reservation_fee_egp": 100000,
+      "buildings": 12,
+      "unit_types": [
+        {
+          "name": "apartment",
+          "bedrooms": [
+            2,
+            3
+          ],
+          "area_sqm": [
+            115,
+            185
+          ],
+          "price_per_sqm": 58000,
+          "floors": 7
+        },
+        {
+          "name": "duplex",
+          "bedrooms": [
+            4
+          ],
+          "area_sqm": [
+            230,
+            290
+          ],
+          "price_per_sqm": 61000,
+          "floors": 7
+        }
+      ],
+      "plans": [
+        {
+          "code": "QMH-8Y",
+          "down_payment_pct": 10,
+          "delivery_payment_pct": 0,
+          "years": 8,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        },
+        {
+          "code": "QMH-10Y",
+          "down_payment_pct": 5,
+          "delivery_payment_pct": 5,
+          "years": 10,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        },
+        {
+          "code": "QMH-CASH",
+          "down_payment_pct": 100,
+          "delivery_payment_pct": 0,
+          "years": 0,
+          "frequency": "annual",
+          "cash_discount_pct": 20
+        }
+      ],
+      "amenities_en": [
+        "clubhouse",
+        "central park 14 acres",
+        "international school plot",
+        "mall"
+      ],
+      "amenities_ar": [
+        "نادي اجتماعي",
+        "حديقة مركزية 14 فدان",
+        "أرض مدرسة دولية",
+        "مول تجاري"
+      ]
+    },
+    {
+      "code": "LZB",
+      "name_en": "Lazuli Bay",
+      "name_ar": "لازولي باي",
+      "developer": "SHR",
+      "area_en": "North Coast (Ras El Hekma)",
+      "area_ar": "الساحل الشمالي (رأس الحكمة)",
+      "land_acres": 140,
+      "delivery": "2028-06-30",
+      "finishing": "fully_finished",
+      "maintenance_pct": 10,
+      "reservation_fee_egp": 150000,
+      "buildings": 9,
+      "unit_types": [
+        {
+          "name": "chalet",
+          "bedrooms": [
+            1,
+            2,
+            3
+          ],
+          "area_sqm": [
+            75,
+            140
+          ],
+          "price_per_sqm": 92000,
+          "floors": 3
+        },
+        {
+          "name": "villa",
+          "bedrooms": [
+            4,
+            5
+          ],
+          "area_sqm": [
+            240,
+            360
+          ],
+          "price_per_sqm": 88000,
+          "floors": 0
+        }
+      ],
+      "plans": [
+        {
+          "code": "LZB-7Y",
+          "down_payment_pct": 10,
+          "delivery_payment_pct": 0,
+          "years": 7,
+          "frequency": "semi_annual",
+          "cash_discount_pct": 0
+        },
+        {
+          "code": "LZB-5Y",
+          "down_payment_pct": 15,
+          "delivery_payment_pct": 10,
+          "years": 5,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        }
+      ],
+      "amenities_en": [
+        "1.2 km sandy beach",
+        "marina",
+        "lagoons",
+        "beach club",
+        "hotel"
+      ],
+      "amenities_ar": [
+        "شاطئ رملي 1.2 كم",
+        "مارينا",
+        "لاجونات",
+        "بيتش كلوب",
+        "فندق"
+      ]
+    },
+    {
+      "code": "SDG",
+      "name_en": "Sidra Groves",
+      "name_ar": "سدرة جروفز",
+      "developer": "DSP",
+      "area_en": "Sheikh Zayed",
+      "area_ar": "الشيخ زايد",
+      "land_acres": 85,
+      "delivery": "2028-12-31",
+      "finishing": "core_and_shell",
+      "maintenance_pct": 7,
+      "reservation_fee_egp": 200000,
+      "buildings": 0,
+      "unit_types": [
+        {
+          "name": "townhouse",
+          "bedrooms": [
+            3,
+            4
+          ],
+          "area_sqm": [
+            180,
+            230
+          ],
+          "price_per_sqm": 52000,
+          "floors": 0
+        },
+        {
+          "name": "twin_house",
+          "bedrooms": [
+            4
+          ],
+          "area_sqm": [
+            240,
+            280
+          ],
+          "price_per_sqm": 55000,
+          "floors": 0
+        },
+        {
+          "name": "villa",
+          "bedrooms": [
+            5,
+            6
+          ],
+          "area_sqm": [
+            300,
+            420
+          ],
+          "price_per_sqm": 57000,
+          "floors": 0
+        }
+      ],
+      "plans": [
+        {
+          "code": "SDG-8Y",
+          "down_payment_pct": 10,
+          "delivery_payment_pct": 10,
+          "years": 8,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        },
+        {
+          "code": "SDG-6Y",
+          "down_payment_pct": 20,
+          "delivery_payment_pct": 0,
+          "years": 6,
+          "frequency": "monthly",
+          "cash_discount_pct": 0
+        }
+      ],
+      "amenities_en": [
+        "gated community",
+        "sports club",
+        "jogging track 3 km",
+        "nursery"
+      ],
+      "amenities_ar": [
+        "كمبوند مغلق",
+        "نادي رياضي",
+        "مسار جري 3 كم",
+        "حضانة"
+      ]
+    },
+    {
+      "code": "LTC",
+      "name_en": "Lotus Capital Residence",
+      "name_ar": "لوتس كابيتال ريزيدنس",
+      "developer": "NCD",
+      "area_en": "New Administrative Capital (R7)",
+      "area_ar": "العاصمة الإدارية الجديدة (R7)",
+      "land_acres": 38,
+      "delivery": "2027-12-31",
+      "finishing": "fully_finished",
+      "maintenance_pct": 8,
+      "reservation_fee_egp": 75000,
+      "buildings": 10,
+      "unit_types": [
+        {
+          "name": "apartment",
+          "bedrooms": [
+            1,
+            2,
+            3
+          ],
+          "area_sqm": [
+            70,
+            170
+          ],
+          "price_per_sqm": 47000,
+          "floors": 9
+        }
+      ],
+      "plans": [
+        {
+          "code": "LTC-9Y",
+          "down_payment_pct": 10,
+          "delivery_payment_pct": 0,
+          "years": 9,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        },
+        {
+          "code": "LTC-12Y",
+          "down_payment_pct": 0,
+          "delivery_payment_pct": 10,
+          "years": 12,
+          "frequency": "quarterly",
+          "cash_discount_pct": 0
+        }
+      ],
+      "amenities_en": [
+        "near monorail station",
+        "co-working space",
+        "kids area",
+        "gym"
+      ],
+      "amenities_ar": [
+        "بجوار محطة المونوريل",
+        "مساحة عمل مشتركة",
+        "منطقة أطفال",
+        "جيم"
+      ]
+    }
+  ],
+  "price_sheets": [
+    {
+      "version": "v1",
+      "effective": "2026-06-01",
+      "multiplier": 1.0,
+      "status": "retired"
+    },
+    {
+      "version": "v2",
+      "effective": "2026-10-01",
+      "multiplier": 1.08,
+      "status": "active"
+    }
+  ],
+  "discount_limits_pct": {
+    "rep": 2,
+    "team_lead": 5,
+    "manager": 10
+  }
+}

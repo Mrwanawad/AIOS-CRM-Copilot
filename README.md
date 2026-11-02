@@ -26,6 +26,7 @@ infra/             deployment config
 |---|---|
 | pricing (installments, mortgage, discount policy) | done |
 | knowledge: Gemini embedder adapter | done |
+| synthetic corpus + gold Q&A set | done |
 | knowledge: ingestion + hybrid retrieval | next |
 | inventory, orchestration, crm_copilot, interactions, coaching, escalation, call_timing | planned |
 

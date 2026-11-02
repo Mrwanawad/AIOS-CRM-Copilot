@@ -6,6 +6,7 @@ requires-python = ">=3.12,<3.14"
 dependencies = [
     "fastapi>=0.115",
     "google-genai>=1.0",
+    "openpyxl>=3.1",
     "pydantic>=2.9",
     "pydantic-settings>=2.6",
     "uvicorn[standard]>=0.32",
@@ -19,6 +20,7 @@ dev = [
     "pytest>=8.3",
     "pytest-cov>=6.0",
     "ruff>=0.8",
+    "types-openpyxl>=3.1.5.20261017",
 ]
 
 [build-system]
@@ -31,7 +33,7 @@ packages = ["src/aios"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-src = ["src", "tests"]
+src = ["src", "tests", "tools"]
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "B", "UP", "N", "SIM", "RUF", "PT", "ANN", "S", "DTZ"]
@@ -39,15 +41,16 @@ ignore = ["ANN401"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "ANN"]
+"tools/**" = ["S101", "S311", "E501"]  # seeded demo-data generator with prose templates
 
 [tool.mypy]
 python_version = "3.12"
 strict = true
 plugins = ["pydantic.mypy"]
-mypy_path = "src"
-packages = ["aios"]
+mypy_path = "src:tools"
+files = ["src/aios", "tools"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers --import-mode=importlib"
-pythonpath = ["src"]
+pythonpath = ["src", "tools"]
