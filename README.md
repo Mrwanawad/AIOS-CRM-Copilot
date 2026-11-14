@@ -19,6 +19,8 @@ the LLM must call instead of doing arithmetic.**
 
 </div>
 
+<p align="center"><img src="docs/demo.gif" width="100%" alt="Swagger UI of the AIOS API: the installment-plan request is filled in, executed, and returns an exact 32-installment schedule whose total equals the net price to the cent"/></p>
+
 ---
 
 ## Contents
